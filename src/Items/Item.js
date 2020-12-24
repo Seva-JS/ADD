@@ -5,7 +5,10 @@ class Item extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            names: ['Иван', 'Саша']
+            editing: false,
+            names: ['Иван', 'Саша'],
+            key: ''
+
         };
     }
 
@@ -27,25 +30,51 @@ class Item extends React.Component {
                 return i !== item
             })
         })
+    }
 
+    setUpdate(text, key) {
+        const item = this.state.names;
+        item.map(item => {
+            if (item.key === key) {
+                item.text = text;
+
+            }
+        })
+        this.setState({item: item})
 
     }
 
-    render() {
-        return (
-            <div>
-                <div><input placeholder={'Имя'} onKeyPress={this.newPost.bind(this)}/></div>
-                <div>
-                </div>
-                {this.state.names.map((item) => {
-                        return <div>
-                            {item}
-                            <button className={s.but} onClick={this.delName.bind(this, item)}>Del</button>
-                            <button className={s.but} >Change</button>
-                        </div>
 
-                    }
-                )}
+    render() {
+
+
+        return (
+
+            <div>
+                <div><input placeholder={'Имя'} onKeyPress={this.newPost.bind(this)}
+                /></div>
+                <div>
+
+                    {this.state.names.map((item) => {
+                            debugger
+                            return <div>
+                                <input
+                                    key={item.id}
+                                    onDoubleClick={this.setUpdate.bind(this)}
+                                    type='text' value={item}
+                                    className={s.in}
+                                    onChange={(e) => {
+                                        this.setUpdate(e.target.value, item.id)
+                                    }}
+                                >
+
+                                </input>
+                                <button className={s.but} onClick={this.delName.bind(this, item)}>Del</button>
+                            </div>
+
+                        },
+                    )}
+                </div>
 
             </div>
         )
