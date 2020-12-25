@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Item.module.css'
+import Post from "./Post";
 
 class Item extends React.Component {
     constructor() {
@@ -15,48 +15,50 @@ class Item extends React.Component {
         this.setUpdate = this.setUpdate.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.newPost = this.newPost.bind(this)
+        this.delName = this.delName.bind(this);
 
 
     }
 
     newPost(e) {
         if (e.key === "Enter") {
-            const addPost = this.state.names;
-            addPost.push(e.currentTarget.value);
-            this.setState({
-                names: addPost
-            })
-            e.currentTarget.value = ''
+            const addPost = this.state.currentItem;
+            if (addPost.text !== "") {
+                const items = [...this.state.names, addPost];
 
+                this.setState({
+                    names: items,
+                    currentItem: {
+                        text: '',
+                        key: ''
+                    }
+                })
+                e.currentTarget.value = ''
+            }
         }
     }
 
     delName(item) {
-        debugger
         this.setState({
             names: this.state.names.filter((i) => {
                 return i !== item
             })
         })
-
-
     }
 
     setUpdate(text, key) {
-        debugger
-        const names = this.state.names;
-        names.map(name => {
-            if (name.key === key) {
-                name = text;
+        const items = this.state.names;
+        items.map(item => {
+            if (item.key === key) {
+                item.text = text;
             }
         })
         this.setState({
-            names: names
+            names: items
         })
     }
 
     handleInput(e) {
-        debugger
         this.setState({
             currentItem: {
                 text: e.target.value,
@@ -68,25 +70,12 @@ class Item extends React.Component {
     render() {
         return (
             <div>
+                <header>NAMES LIST</header>
                 <div><input placeholder={'Имя'} onKeyPress={this.newPost} onChange={this.handleInput}/></div>
                 <div>
+                    <Post items={this.state.names} setUpdate={this.setUpdate} del={this.delName}/>
+
                 </div>
-                {this.state.names.map((item) => {
-                        debugger
-                        return <div>
-                            <input className={s.in}  value={item} key={this.state.currentItem.key}
-                                   onChange={(e) => {
-                                       this.setUpdate(e.target.value, this.state.currentItem.key)
-                                   }}
-                            />
-
-
-                            <button className={s.but} onClick={this.delName.bind(this,item)}>Del</button>
-
-                        </div>
-                    }
-                )}
-
             </div>
         )
     }
