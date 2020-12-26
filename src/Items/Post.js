@@ -6,7 +6,7 @@ function Post(props) {
     const PostItems = items.map(item => {
         return <div key={item.key}>
             <p>
-                <input type='checkbox' onChange={props.checkChange}/>
+                <input type='checkbox' checked={props.check} onChange={props.checkChange}/>
 
                 <input type="text" id={item.key} value={item.text} className={s.in} onChange={(e) => {
                     props.setUpdate(e.target.value, item.key)
