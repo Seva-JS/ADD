@@ -1,0 +1,25 @@
+.but{
+    border-color: red;
+    border-radius: 10px;
+}
+.in{
+    width: 90px ;
+    text-align: center;
+    background-color: #282c34;
+    border: 0;
+
+}
+.in p input:focus{
+    outline: none;
+}
+.numberOfNames{
+    color: gold;
+}
+input[type=checkbox] + label {
+    color: #ccc;
+    font-style: italic;
+}
+input[type=checkbox]:checked + label {
+    color: #f00;
+    font-style: normal;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from "./Post";
+import s from './Item.module.css'
 
 class Item extends React.Component {
     constructor() {
@@ -10,12 +11,14 @@ class Item extends React.Component {
                 text: '',
                 key: ''
 
-            }
+            },
+            check:false
         };
         this.setUpdate = this.setUpdate.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.newPost = this.newPost.bind(this)
         this.delName = this.delName.bind(this);
+        this.checkChange=this.checkChange.bind(this)
 
 
     }
@@ -66,14 +69,24 @@ class Item extends React.Component {
             }
         })
     }
+    checkChange(){
+        let _check=!this.state.check;
+        this.setState({
+            check:_check
+        })
+
+    }
 
     render() {
         return (
             <div>
                 <header>NAMES LIST</header>
+                <p>Total name's in list <div className={s.numberOfNames}>{this.state.names.length}</div></p>
                 <div><input placeholder={'Имя'} onKeyPress={this.newPost} onChange={this.handleInput}/></div>
                 <div>
-                    <Post items={this.state.names} setUpdate={this.setUpdate} del={this.delName}/>
+                    <Post type='checkbox ' items={this.state.names} setUpdate={this.setUpdate} del={this.delName}
+                          checkChange={this.checkChange} check={this.state.check}
+                          />
 
                 </div>
             </div>

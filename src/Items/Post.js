@@ -1,12 +1,13 @@
 import React from 'react';
-import s from './Item.module.css'
-
+import s from './Post.module.css'
 
 function Post(props) {
     const items = props.items;
     const PostItems = items.map(item => {
         return <div key={item.key}>
             <p>
+                <input type='checkbox' onChange={props.checkChange}/>
+
                 <input type="text" id={item.key} value={item.text} className={s.in} onChange={(e) => {
                     props.setUpdate(e.target.value, item.key)
 
@@ -19,9 +20,10 @@ function Post(props) {
 
         </div>
     })
-    return <div>
+    return (<div>
+
         {PostItems}
-    </div>;
+    </div>)
 }
 
 export default Post;
