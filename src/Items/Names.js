@@ -1,8 +1,8 @@
 import React from 'react';
-import Post from "./Post";
-import s from './Item.module.css'
+import Name from "./Name";
+import s from './Names.module.css'
 
-class Item extends React.Component {
+export default class Names extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -10,24 +10,21 @@ class Item extends React.Component {
             currentItem: {
                 text: '',
                 key: ''
-
             },
-            check:false
         };
         this.setUpdate = this.setUpdate.bind(this);
         this.handleInput = this.handleInput.bind(this)
-        this.newPost = this.newPost.bind(this)
+        this.newName = this.newName.bind(this)
         this.delName = this.delName.bind(this);
-        this.checkChange=this.checkChange.bind(this)
 
 
     }
 
-    newPost(e) {
+    newName(e) {
         if (e.key === "Enter") {
-            const addPost = this.state.currentItem;
-            if (addPost.text !== "") {
-                const items = [...this.state.names, addPost];
+            const newName = this.state.currentItem;
+            if (newName.text !== "") {
+                const items = [...this.state.names, newName];
 
                 this.setState({
                     names: items,
@@ -41,23 +38,23 @@ class Item extends React.Component {
         }
     }
 
-    delName(item) {
+    delName(name) {
         this.setState({
             names: this.state.names.filter((i) => {
-                return i !== item
+                return i !== name
             })
         })
     }
 
     setUpdate(text, key) {
-        const items = this.state.names;
-        items.map(item => {
+        const names = this.state.names;
+        names.map(item => {
             if (item.key === key) {
                 item.text = text;
             }
         })
         this.setState({
-            names: items
+            names: names
         })
     }
 
@@ -69,31 +66,22 @@ class Item extends React.Component {
             }
         })
     }
-    checkChange(){
-        let _check=!this.state.check;
-        this.setState({
-            check:_check
-        })
 
-    }
 
     render() {
         return (
-            <div>
+            <div className={s.main}>
                 <header>NAMES LIST</header>
                 <p>Total name's in list <div className={s.numberOfNames}>{this.state.names.length}</div></p>
-                <div><input placeholder={'Имя'} onKeyPress={this.newPost} onChange={this.handleInput}/></div>
+                <div><input placeholder={'Name'} onKeyPress={this.newName} onChange={this.handleInput}/></div>
                 <div>
-                    <Post type='checkbox ' items={this.state.names} setUpdate={this.setUpdate} del={this.delName}
-                          checkChange={this.checkChange} check={this.state.check}
-                          />
-
+                    <Name names={this.state.names} setUpdate={this.setUpdate} del={this.delName}/>
                 </div>
             </div>
         )
+
     }
 
 
 }
 
-export default Item;

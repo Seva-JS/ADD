@@ -5,8 +5,9 @@
 .in{
     width: 90px ;
     text-align: center;
-    background-color: #282c34;
+    background-color: #ffffff;
     border: 0;
+    margin-bottom: 10px;
 
 }
 .in p input:focus{
