@@ -1,6 +1,7 @@
 import React from 'react';
-import Name from "./Name";
-import s from './Names.module.css'
+import s from './Name.module.css'
+import Index from "./index";
+import SvgIcon from "@material-ui/core/SvgIcon";
 
 export default class Names extends React.Component {
     constructor() {
@@ -15,7 +16,6 @@ export default class Names extends React.Component {
         this.setUpdate = this.setUpdate.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.newName = this.newName.bind(this)
-        this.delName = this.delName.bind(this);
 
 
     }
@@ -38,7 +38,7 @@ export default class Names extends React.Component {
         }
     }
 
-    delName(name) {
+    delName = (name) => {
         this.setState({
             names: this.state.names.filter((i) => {
                 return i !== name
@@ -62,20 +62,32 @@ export default class Names extends React.Component {
         this.setState({
             currentItem: {
                 text: e.target.value,
-                key: Date.now()
+                key: Date.now(),
+
             }
+
         })
     }
-
 
     render() {
         return (
             <div className={s.main}>
+                <SvgIcon onClick={e => window.location.href = '/'} className={s.homeIcon}>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </SvgIcon>
                 <header>NAMES LIST</header>
-                <p>Total name's in list <div className={s.numberOfNames}>{this.state.names.length}</div></p>
-                <div><input placeholder={'Name'} onKeyPress={this.newName} onChange={this.handleInput}/></div>
+                <p>Total name's in list <div className={s.numberOfNames}>{this.state.names.length}</div>
+                </p>
+                <div className={s.input}><input placeholder={'Name'} onKeyPress={this.newName}
+                                                onChange={this.handleInput}/></div>
                 <div>
-                    <Name names={this.state.names} setUpdate={this.setUpdate} del={this.delName}/>
+                    {this.state.names.map((name) => {
+                        return <Index
+                            name={name}
+                            setUpdate={this.setUpdate}
+                            deleteName={this.delName}
+                        />
+                    })}
                 </div>
             </div>
         )
