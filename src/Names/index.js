@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Name.module.css'
+import s from './Names.module.css'
 import {Route} from "react-router";
 import User from "./Users/User";
 export default class Index extends React.Component {

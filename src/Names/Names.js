@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Name.module.css'
+import s from './Names.module.css'
 import Index from "./index";
 import SvgIcon from "@material-ui/core/SvgIcon";
 
