@@ -31,3 +31,15 @@ input[type=checkbox]:checked + label {
     background-color: #4ccd6a;
     border-radius: 15px;
 }
+.paragraph{
+    border-radius: 15px;
+    border-style: solid;
+}
+.homeIcon{
+    border-style: solid;
+}
+.input{
+    border-radius: 25px;
+}
+.homeIcon
+{ border-style: solid;}

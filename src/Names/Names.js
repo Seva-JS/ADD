@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Names.module.css'
 import Index from "./index";
-import SvgIcon from "@material-ui/core/SvgIcon";
 
 export default class Names extends React.Component {
     constructor() {
@@ -72,21 +71,19 @@ export default class Names extends React.Component {
     render() {
         return (
             <div className={s.main}>
-                <SvgIcon onClick={e => window.location.href = '/'} className={s.homeIcon}>
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                </SvgIcon>
                 <header>NAMES LIST</header>
                 <p>Total name's in list <div className={s.numberOfNames}>{this.state.names.length}</div>
                 </p>
-                <div className={s.input}><input placeholder={'Name'} onKeyPress={this.newName}
-                                                onChange={this.handleInput}/></div>
+                <div><input className={s.input} placeholder={'Name'} onKeyPress={this.newName}
+                            onChange={this.handleInput}/></div>
                 <div>
                     {this.state.names.map((name) => {
-                        return <Index
+                        return <div><Index
                             name={name}
                             setUpdate={this.setUpdate}
                             deleteName={this.delName}
                         />
+                        </div>
                     })}
                 </div>
             </div>
