@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Names.module.css'
 import {Link} from "react-router-dom";
-import {prop, User} from "../App";
+import {User} from "../App";
 
 export default class Index extends React.Component {
 
@@ -27,10 +27,10 @@ export default class Index extends React.Component {
 
         }
     }
-
+//Тот самый ход гения , что-бы передать пропы , здесь происходи первый ренедер с приходящими пропами.
     NameProf(props) {
-        debugger
         User(this.props.name.text)
+
     }
 
 
@@ -48,7 +48,7 @@ export default class Index extends React.Component {
                     this.props.deleteName(name,)
                 }}>Del
                 </button>
-                <Link to={'/User'}>
+                <Link to={'/user'}>
                     <button className={s.but} onClick={event => this.NameProf(name.text)}>Prof</button>
                 </Link>
             </p>

@@ -16,10 +16,10 @@ function App() {
                         <Route
                             path={''}
                             render={() => <Names/>}/>
-                        <Route
-                            path="/User"
+                        <Route //сюда хочу передать пропы из Index.js.
+                            path="/user"
                             render={(props) => (
-                                <User {...props} isAuthed={true} />
+                                <User {...props} />
                             )}
                         />
                     </div>
@@ -31,17 +31,20 @@ function App() {
 
 
 export function User(props) {
-    debugger
+    //Здесь поставь debugger и посмотри как приходят пропсы , а потом сробатывает редирект.
+    //Если захочешь увидеть рендер функции снизу замени {props} на любой текст
     return (
         <div>
             <Link to={''}><SvgIcon className={s.homeIcon}>
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
             </SvgIcon>
             </Link>
-            <div><h1>Greeting page</h1>
+            <div>
+                <h1>User Info</h1>
                 <p>
                     {props}
-                </p></div>
+                </p>
+            </div>
         </div>
     )
 

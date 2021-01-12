@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Names.module.css'
-import Index from "./index";
+import Index from "./Index";
 
 export default class Names extends React.Component {
     constructor() {
@@ -74,15 +74,18 @@ export default class Names extends React.Component {
                 <header>NAMES LIST</header>
                 <p>Total name's in list <div className={s.numberOfNames}>{this.state.names.length}</div>
                 </p>
-                <div><input className={s.input} placeholder={'Name'} onKeyPress={this.newName}
-                            onChange={this.handleInput}/></div>
+                <div>
+                    <input className={s.input} placeholder={'Name'} onKeyPress={this.newName}
+                           onChange={this.handleInput}/>
+                </div>
                 <div>
                     {this.state.names.map((name) => {
-                        return <div><Index
-                            name={name}
-                            setUpdate={this.setUpdate}
-                            deleteName={this.delName}
-                        />
+                        return <div>
+                            <Index
+                                name={name}
+                                setUpdate={this.setUpdate}
+                                deleteName={this.delName}
+                            />
                         </div>
                     })}
                 </div>
