@@ -1,21 +1,20 @@
 import React from 'react';
 import s from './Names.module.css'
 import {Link} from "react-router-dom";
-import {User} from "../App";
+import {useParams} from "react-router";
 
-export default class Index extends React.Component {
+export default class index extends React.Component {
 
     constructor() {
         super();
         this.state = {
             check: 'red'
         }
-        this.checkChange = this.checkChange.bind(this)
 
     }
 
 
-    checkChange(e, key) {
+    checkChange = (e, key) => {
         if (this.state.check === 'red') {
             this.setState({
                 check: 'green'
@@ -27,17 +26,19 @@ export default class Index extends React.Component {
 
         }
     }
-//Тот самый ход гения , что-бы передать пропы , здесь происходи первый ренедер с приходящими пропами.
-    NameProf(props) {
-        User(this.props.name.text)
+    /*profInfo = (e, key,text) => {
+        return(
+            <div>{text}</div>
+        )
 
-    }
+
+    }*/
 
 
     render() {
         const name = this.props.name;
         return <div id={name.key}>
-            <p className={s.paragraph} checked={this.state.check} style={{backgroundColor: this.state.check}}>
+            <div className={s.paragraph} checked={this.state.check} style={{backgroundColor: this.state.check}}>
                 <input type='checkbox' className={s.input} onChange={(e) => {
                     this.checkChange(e.target.value, name.key)
                 }}/>
@@ -45,13 +46,16 @@ export default class Index extends React.Component {
                     this.props.setUpdate(e.target.value, name.key)
                 }}/>
                 <button className={s.but} onClick={() => {
-                    this.props.deleteName(name,)
+                    this.props.deleteName(name)
                 }}>Del
                 </button>
-                <Link to={'/user'}>
-                    <button className={s.but} onClick={event => this.NameProf(name.text)}>Prof</button>
+                <Link to={'/user/' + name.key+'/'+ name.text}>
+                    <button /*onClick={(e) => {
+                        this.profInfo(e.target.value, name.key,name.text)
+                    }}*/>Profile
+                    </button>
                 </Link>
-            </p>
+            </div>
         </div>
 
     }
