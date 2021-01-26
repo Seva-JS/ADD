@@ -19,7 +19,7 @@ export default function UserInfo(props) {
                 <h1>User Info</h1>
                 <p>
                     <div className={s.text_line}>ID:{id}</div>
-                    <div className={s.text_line} >Name:{name}</div>
+                    <div className={s.text_line}>Name:{name}</div>
                 </p>
             </div>
         </div>

@@ -1,14 +1,19 @@
 .but {
     border-color: red;
     border-radius: 10px;
+    margin-top: 10px;
+
 }
 
 .in {
     width: 90px;
+    height: 25px;
     text-align: center;
     background-color: #ffffff;
     border: 0;
-    margin-bottom: 10px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+
 
 }
 

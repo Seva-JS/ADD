@@ -46,7 +46,7 @@ export default class App extends React.Component {
 
     setUpdate = (text, key) => {
         const names = this.state.users;
-        names.map(item => {
+        names.map(item=> {
             if (item.key === key) {
                 item.text = text;
             }
